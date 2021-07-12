@@ -6,19 +6,46 @@ const Show = () => {
 
     const { id } = useParams();
     // console.log('params', params);
+    const [show, setShow] = useState(null);
+    const [isLoading, setisLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-        const [show,setShow] =useState(null);
-        useEffect(()=>{
 
-            apiGet(`/shows/${id}?emded[]=seasons&embed[]=cast`).then(results=>{
-                setShow(results);
+    useEffect(() => {
+
+        let isMounted = true;
+
+        apiGet(`/shows/${id}?emded[]=seasons&embed[]=cast`)
+            .then(results => {
+                    if (isMounted) {
+                        setShow(results);
+                        setisLoading(false);
+                    }
             })
+            .catch(err => {
+                if (isMounted) {
+                    setError(err.message);
+                    setisLoading(false);
+                }
+            });
 
-        },[id])
 
-        console.log('show',show);
+        return () => {
+            isMounted = false;
+        }
+    }, [id]);
 
-    return <div> this is Show page. </div>
+    console.log('show', show);
+
+    if (isLoading) {
+        return <div>Data is being loaded</div>
+    }
+
+    if (error) {
+        return <div>Error occured</div>
+    }
+
+    return <div> {isLoading}this is Show page. </div>
 
 }
 
