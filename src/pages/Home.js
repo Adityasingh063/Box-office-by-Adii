@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import ActorGrid from '../components/actor/ActorGrid';
 import MainPageLayout from '../components/MainPageLayout';
-import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config'
+import ShowGrid from '../components/show/ShowGrid';
+import ActorGrid from '../components/actor/ActorGrid';
 
 const Home = () => {
 
@@ -17,6 +17,8 @@ const Home = () => {
         // console.log(ev);
         setInput(ev.target.value);
     };
+
+
 
     const onSearch = () => {
         // https://www.api.tvmaze.com/search?q=men
