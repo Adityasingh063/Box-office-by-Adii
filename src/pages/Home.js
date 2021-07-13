@@ -1,100 +1,98 @@
-
 import React, { useState } from 'react';
 import MainPageLayout from '../components/MainPageLayout';
-import { apiGet } from '../misc/config'
+import { apiGet } from '../misc/config';
 import ShowGrid from '../components/show/ShowGrid';
 import ActorGrid from '../components/actor/ActorGrid';
 import { useLastQuery } from '../misc/custom-hooks';
+import {
+  SearchInput,
+  RadioInputsWrapper,
+  SearchButtonWrapper,
+} from './Home.styled';
+import CustomRadio from '../components/CustomRadio';
 
 const Home = () => {
+  const [input, setInput] = useLastQuery();
+  const [results, setResults] = useState(null);
+  const [searchOption, setSearchOption] = useState('shows');
 
-    const [input, setInput] = useLastQuery('');
-    const [results, setResults] = useState('');
-    const [searchOption, setSearchOption] = useState('shows');
-    const isShowsSearch = searchOption === 'shows';
+  const isShowsSearch = searchOption === 'shows';
+  const onSearch = () => {
+    apiGet(`/search/${searchOption}?q=${input}`).then(result => {
+      setResults(result);
+    });
+  };
 
+  const onInputChange = ev => {
+    setInput(ev.target.value);
+  };
 
-    const onInputChange = ev => {
-        // console.log(ev);
-        setInput(ev.target.value);
-    };
+  const onKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      onSearch();
+    }
+  };
 
+  const onRadioChange = ev => {
+    setSearchOption(ev.target.value);
+  };
 
-
-    const onSearch = () => {
-        // https://www.api.tvmaze.com/search?q=men
-
-        // fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
-        //     .then(r => r.json())
-        //     .then(result => {
-        //         console.log(result);
-        //         setResults(result);
-        //     })
-
-        apiGet(`/search/${searchOption}?q=${input}`).then(result => {
-            setResults(result);
-        })
-    };
-
-    const onKeyDown = (ev) => {
-        if (ev.keyCode === 13) {
-            // console.log(ev.keyCode);
-            onSearch();
-        }
+  const renderResults = () => {
+    if (results && results.length === 0) {
+      return <div>No results</div>;
     }
 
-
-    const onRadioChange = (ev) => {
-        setSearchOption(ev.target.value);
+    if (results && results.length > 0) {
+      return results[0].show ? (
+        <ShowGrid data={results} />
+      ) : (
+        <ActorGrid data={results} />
+      );
     }
 
-    console.log(searchOption);
+    return null;
+  };
 
-    const renderResults = () => {
-        if (results && results.length === 0) {
-            return <div>NO RESULT</div>
-        }
-        if (results && results.length > 0) {
-            return (results[0].show ?
-                (
-                    <ShowGrid  data = {results}/>
-                ) :(
-                    <ActorGrid data={results}/>
-                )
-            );
-        }
-        return null;
-    };
+  return (
+    <MainPageLayout>
+      <SearchInput
+        type="text"
+        placeholder="Search for something"
+        onChange={onInputChange}
+        onKeyDown={onKeyDown}
+        value={input}
+      />
 
+      <RadioInputsWrapper>
+        <div>
+          <CustomRadio
+            label="Shows"
+            id="shows-search"
+            value="shows"
+            checked={isShowsSearch}
+            onChange={onRadioChange}
+          />
+        </div>
 
-    return (
-        <MainPageLayout>
-            <input type="text"
-                placeholder="Search Something"
-                onChange={onInputChange}
-                onKeyDown={onKeyDown}
-                value={input} />
+        <div>
+          <CustomRadio
+            label="Actors"
+            id="actors-search"
+            value="people"
+            checked={!isShowsSearch}
+            onChange={onRadioChange}
+          />
+        </div>
+      </RadioInputsWrapper>
 
-            <div>
-                <label htmlFor="shows-search">
-                    Shows
-                <input id="shows-search" type="radio" value="shows" onChange={onRadioChange} checked={isShowsSearch} />
-                </label>
-
-                <label htmlFor="actor-search">
-                    Actors
-                <input id="actors-search" type="radio" value="people" onChange={onRadioChange} checked={!isShowsSearch} />
-                </label>
-            </div>
-
-            <button type="button"
-                onClick={onSearch}>
-                Search
-            </button>
-
-            {renderResults()}
-        </MainPageLayout>
-    );
+      <SearchButtonWrapper>
+        <button type="button" onClick={onSearch}>
+          Search
+        </button>
+      </SearchButtonWrapper>
+      {renderResults()}
+    </MainPageLayout>
+  );
 };
 
 export default Home;

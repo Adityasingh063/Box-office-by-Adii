@@ -10,4 +10,4 @@ const Title = ({title,subtitle}) => {
     )
 }
 
-export default Title;
+export default Title
