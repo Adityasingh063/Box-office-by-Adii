@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Box-office-by-Adii%20/static/css/main.084fcccb.chunk.css",
-    "main.js": "/Box-office-by-Adii%20/static/js/main.a7e35d5e.chunk.js",
-    "main.js.map": "/Box-office-by-Adii%20/static/js/main.a7e35d5e.chunk.js.map",
+    "main.js": "/Box-office-by-Adii%20/static/js/main.9da01cd7.chunk.js",
+    "main.js.map": "/Box-office-by-Adii%20/static/js/main.9da01cd7.chunk.js.map",
     "runtime-main.js": "/Box-office-by-Adii%20/static/js/runtime-main.063a5842.js",
     "runtime-main.js.map": "/Box-office-by-Adii%20/static/js/runtime-main.063a5842.js.map",
     "static/js/2.ce55abc0.chunk.js": "/Box-office-by-Adii%20/static/js/2.ce55abc0.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.063a5842.js",
     "static/js/2.ce55abc0.chunk.js",
     "static/css/main.084fcccb.chunk.css",
-    "static/js/main.a7e35d5e.chunk.js"
+    "static/js/main.9da01cd7.chunk.js"
   ]
 }
