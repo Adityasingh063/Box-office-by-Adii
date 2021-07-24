@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Box-office-by-Adii%20/static/css/main.084fcccb.chunk.css",
+    "main.js": "/Box-office-by-Adii%20/static/js/main.1010ae7a.chunk.js",
+    "main.js.map": "/Box-office-by-Adii%20/static/js/main.1010ae7a.chunk.js.map",
+    "runtime-main.js": "/Box-office-by-Adii%20/static/js/runtime-main.891932c1.js",
+    "runtime-main.js.map": "/Box-office-by-Adii%20/static/js/runtime-main.891932c1.js.map",
+    "static/js/2.1c17447c.chunk.js": "/Box-office-by-Adii%20/static/js/2.1c17447c.chunk.js",
+    "static/js/2.1c17447c.chunk.js.map": "/Box-office-by-Adii%20/static/js/2.1c17447c.chunk.js.map",
+    "index.html": "/Box-office-by-Adii%20/index.html",
+    "static/css/main.084fcccb.chunk.css.map": "/Box-office-by-Adii%20/static/css/main.084fcccb.chunk.css.map",
+    "static/js/2.1c17447c.chunk.js.LICENSE.txt": "/Box-office-by-Adii%20/static/js/2.1c17447c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.891932c1.js",
+    "static/js/2.1c17447c.chunk.js",
+    "static/css/main.084fcccb.chunk.css",
+    "static/js/main.1010ae7a.chunk.js"
+  ]
+}
